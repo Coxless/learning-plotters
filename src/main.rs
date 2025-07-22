@@ -1,8 +1,8 @@
 use plotters::prelude::*;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let root = BitMapBackend::new("images/0.png", (640, 480)).into_drawing_area();
+    let root: DrawingArea<BitMapBackend<'_>, plotters::coord::Shift> = BitMapBackend::new("images/0.png", (640, 480)).into_drawing_area();
     root.fill(&WHITE)?;
-    let mut chart = ChartBuilder::on(&root)
+    let mut chart: ChartContext<'_, BitMapBackend<'_>, Cartesian2d<plotters::coord::types::RangedCoordf32, plotters::coord::types::RangedCoordf32>> = ChartBuilder::on(&root)
         .caption("y=x^2", ("sans-serif", 50).into_font())
         .margin(5)
         .x_label_area_size(30)
